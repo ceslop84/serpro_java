@@ -182,7 +182,7 @@ public class Pessoa{
         return valor1 + valor2;
     }
 
-    public void escreverArquivo(String nome_arquivo){
+    public void escreverArquivo(String nomeArquivo){
        
         int[] conteudo_lista = new int[]{0,1,2,3,4,5,6,7,8,9,10};
         HashMap<String, String> conteudo_dicionario = new HashMap<String, String>();
@@ -190,7 +190,8 @@ public class Pessoa{
         conteudo_dicionario.put("idade", "37");
 
         try{
-            FileWriter arquivo = new FileWriter(nome_arquivo);
+            // Para acrescentar ao arquivo usar "new FileWriter(nomeArquivo, true)".
+            FileWriter arquivo = new FileWriter(nomeArquivo);
             for (int valor : conteudo_lista){
                 arquivo.write(valor + "\n");
             }
@@ -205,9 +206,9 @@ public class Pessoa{
         }
     }
 
-    public void lerArquivo(String nome_arquivo){
+    public void lerArquivo(String nomeArquivo){
         try{
-            FileReader arquivo = new FileReader(nome_arquivo);
+            FileReader arquivo = new FileReader(nomeArquivo);
             Scanner conteudo = new Scanner(arquivo);
             while (conteudo.hasNextLine()){
                 String data = conteudo.nextLine();

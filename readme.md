@@ -10,7 +10,7 @@ Demais referências para estudo básico:
 # Conteúdo
 
 * Declarar classe;
-* Declara método;
+* Declara método (private, protected, public);
 * Herança;
 * Cláusulas for, if, switch;
 * Tratamento de dicionários e listas;
@@ -18,5 +18,5 @@ Demais referências para estudo básico:
 * Conexão a banco de dados e CRUD;
 * Ler e escrever em arquivos;
 * Manipulação de string;
-* Testes unitários;
+* Testes unitários (junit);
 * Documentação (docstring);

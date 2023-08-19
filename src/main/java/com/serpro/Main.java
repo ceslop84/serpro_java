@@ -1,7 +1,5 @@
 package com.serpro;
 
-import com.serpro.Pessoa;
-
 class Main{
 
     public static void main(String[] args){
@@ -11,8 +9,13 @@ class Main{
         pessoa.clausulaIf();
         pessoa.clausulaSwitch();
         pessoa.tratamentoExcecao();
-        pessoa.documentacao(1, 2.0, "ahhhhhh");
         pessoa.conexaoBancoDados();
+        pessoa.documentacao(1, 2.0, "ahhhhhh");
+        pessoa.manipulacaoString("veja isso aqui");
+        pessoa.escreverArquivo("teste.txt");
+        pessoa.lerArquivo("teste.txt");
+        Funcionario funcionario = new Funcionario("masculino", 37, "Engenheiro");
+        funcionario.lacoFor();
     }
 
 }

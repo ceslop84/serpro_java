@@ -1,5 +1,8 @@
 package com.serpro;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.HashMap;
 
 public class Pessoa{
@@ -134,10 +138,84 @@ public class Pessoa{
             statement = connection.createStatement();
             statement.execute("DROP TABLE IF EXISTS movie");
             statement.execute("CREATE TABLE movie(title, year, score)");
+
+            preparedStatement = connection.prepareStatement("INSERT INTO movie VALUES (?, ?, ?)");
+            preparedStatement.setString(1,"Monty Python and the Holy Grail");
+            preparedStatement.setInt(2, 1975);
+            preparedStatement.setDouble(3, 8.2);
+            preparedStatement.executeUpdate();
+
+            preparedStatement.setString(1,"And Now for Something Completely Different");
+            preparedStatement.setInt(2, 1971);
+            preparedStatement.setDouble(3, 7.5);
+            preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("DELETE FROM movie WHERE year=?");
+            preparedStatement.setInt(1, 1971);
+            preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement("UPDATE movie SET year = ? WHERE year = ?");
+            preparedStatement.setInt(1, 1984);
+            preparedStatement.setInt(2, 1971);
+
+            statement = connection.createStatement();
+            result = statement.executeQuery("SELECT * FROM movie");
+            while(result.next()){
+                System.out.printf("Title: %s, Year: %s, Score: %s", result.getString("title"), result.getString("year"), result.getString("score"));
+            }
+
             connection.close();
         } catch (SQLException e){
             System.out.println("Erro ao executar query:" + e.getMessage());
         }
         
+    }
+
+    public void manipulacaoString(String texto){
+        System.out.println("Primeiros 5 caracteres: " + texto.substring(0, 5));
+        System.out.println("Esta string tem " + texto.length() + " caracteres");
+        System.out.println("Em caixa baixa: " + texto.toLowerCase());
+        System.out.println("Em caixa ALTA: " + texto.toUpperCase());
+    }
+
+    public int funcaoParaSerTestada(int valor1, int valor2){
+        return valor1 + valor2;
+    }
+
+    public void escreverArquivo(String nome_arquivo){
+       
+        int[] conteudo_lista = new int[]{0,1,2,3,4,5,6,7,8,9,10};
+        HashMap<String, String> conteudo_dicionario = new HashMap<String, String>();
+        conteudo_dicionario.put("nome", "teste");
+        conteudo_dicionario.put("idade", "37");
+
+        try{
+            FileWriter arquivo = new FileWriter(nome_arquivo);
+            for (int valor : conteudo_lista){
+                arquivo.write(valor + "\n");
+            }
+
+            for (Map.Entry<String, String> registro : conteudo_dicionario.entrySet()){
+                arquivo.write(registro.getKey() + ": " + registro.getValue() + "\n");
+            }
+
+            arquivo.close();
+        } catch (IOException e){
+            System.out.println("Erro ao criar arquivo: " + e.getMessage());
+        }
+    }
+
+    public void lerArquivo(String nome_arquivo){
+        try{
+            FileReader arquivo = new FileReader(nome_arquivo);
+            Scanner conteudo = new Scanner(arquivo);
+            while (conteudo.hasNextLine()){
+                String data = conteudo.nextLine();
+                System.out.println(data);
+            }
+            conteudo.close();
+        } catch (IOException e){
+            System.out.println("Erro ao ler arquivo: " + e.getMessage());
+        }
     }
 }

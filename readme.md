@@ -1,4 +1,4 @@
-# Estudo de Python básico para o Concurso SERPRO 2023
+# Estudo de Java básico para o Concurso SERPRO 2023
 
 Java versão 20.0.2
 

@@ -162,8 +162,8 @@ public class Pessoa{
             preparedStatement = connection.prepareStatement("UPDATE movie SET year = ? WHERE year = ?");
             preparedStatement.setInt(1, 1984);
             preparedStatement.setInt(2, 1971);
+            preparedStatement.executeUpdate();
 
-            statement = connection.createStatement();
             result = statement.executeQuery("SELECT * FROM movie");
             while(result.next()){
                 System.out.printf("Title: %s, Year: %s, Score: %s", result.getString("title"), result.getString("year"), result.getString("score"));
@@ -231,6 +231,7 @@ public class Pessoa{
                 System.out.println(data);
             }
             conteudo.close();
+            arquivo.close();
         } catch (IOException e){
             System.out.println("Erro ao ler arquivo: " + e.getMessage());
         }

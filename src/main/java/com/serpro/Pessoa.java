@@ -9,7 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -176,6 +181,17 @@ public class Pessoa{
         System.out.println("Esta string tem " + texto.length() + " caracteres");
         System.out.println("Em caixa baixa: " + texto.toLowerCase());
         System.out.println("Em caixa ALTA: " + texto.toUpperCase());
+        System.out.println("Substituindo: " + texto.replaceAll("a", "b"));
+        System.out.println("Split: " + Arrays.toString(texto.split(" ")));
+        String [] array = texto.split(" ");
+        String [] arrayCopy = Arrays.copyOf(array, array.length);
+        String max = Collections.max(Arrays.asList(arrayCopy));
+        String min = Collections.min(Arrays.asList(arrayCopy));
+        Arrays.sort(arrayCopy);
+        System.out.println("To string: " + Arrays.toString(array));
+        System.out.println("To string: " + Arrays.toString(arrayCopy));
+        System.out.println("Valor máximo: " + max);
+        System.out.println("Valor mínimo: " + min);
     }
 
     public int funcaoParaSerTestada(int valor1, int valor2){
@@ -220,10 +236,31 @@ public class Pessoa{
         }
     }
 
-    public void entrada_usuario(){
+    public void entradaUsuario(){
         Scanner input = new Scanner(System.in);
         System.out.println("Entrar com o dado de teste:");
         String texto = input.nextLine();
         System.out.println("O texto de entrada é: " + texto);
+        input.close();
+    }
+
+    public void  manipulacaoData(String data){
+        LocalDateTime agora = LocalDateTime.now();
+        System.out.println("Parâmetros de hoje " + agora.getYear() + " " + agora.getMonthValue() + " " + agora.getDayOfMonth() + " " + agora.getHour() + " " + agora.getMinute() + " " + agora.getSecond());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        System.out.println("Agora formatado: " + agora.format(formatter));
+        System.out.println("Daqui uma semana: " + agora.plusWeeks(1).format(formatter));  
+        System.out.println("Daqui 30 dias: " + agora.plusDays(30).format(formatter));  
+        LocalDateTime fimAno = LocalDateTime.of(2023, 12, 31, 0, 0, 0);
+        Duration duration = Duration.between(agora, fimAno);
+        System.out.println("Dias para o final do ano: " + duration.toDays());
+        String [] dataListaStr = data.split("/");
+        int [] dataListaInt = new int[dataListaStr.length];
+        for (int i=0; i<dataListaStr.length; i++){
+            dataListaInt[i] = Integer.parseInt(dataListaStr[i]);
+
+        }
+        LocalDateTime dataInformada = LocalDateTime.of(dataListaInt[2], dataListaInt[1], dataListaInt[0], 0, 0, 0);
+        System.out.println("Data informada: " + dataInformada.format(formatter));  
     }
 }

@@ -12,12 +12,13 @@ class Main{
         pessoa.tratamentoExcecao();
         pessoa.documentacao(1, 2.0, "ahhhhhh");
         pessoa.manipulacaoString("veja isso aqui");
+        pessoa.manipulacaoData("12/07/1984");
         pessoa.conexaoBancoDados();
         pessoa.escreverArquivo("teste.txt");
         pessoa.lerArquivo("teste.txt");
         Funcionario funcionario = new Funcionario("masculino", 37, "Engenheiro");
         funcionario.lacoFor();
-        funcionario.entrada_usuario();
+        funcionario.entradaUsuario();
     }
 
 }

@@ -219,4 +219,11 @@ public class Pessoa{
             System.out.println("Erro ao ler arquivo: " + e.getMessage());
         }
     }
+
+    public void entrada_usuario(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Entrar com o dado de teste:");
+        String texto = input.nextLine();
+        System.out.println("O texto de entrada é: " + texto);
+    }
 }

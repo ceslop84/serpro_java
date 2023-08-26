@@ -17,6 +17,7 @@ class Main{
         pessoa.lerArquivo("teste.txt");
         Funcionario funcionario = new Funcionario("masculino", 37, "Engenheiro");
         funcionario.lacoFor();
+        funcionario.entrada_usuario();
     }
 
 }
